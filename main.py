@@ -1,9 +1,15 @@
 import os
 
+def enable_cfg_file(name):
+    #cfgName = name + ".cfg"
+    #filePath =
+    f = open("nagios.cfg")
+
+
+
 
 def create_switch_config():
-    pass
-
+    enable_cfg_file("switch")
 
 def make_install(word):
     os.system('sudo make install' + word)
