@@ -1,15 +1,27 @@
 import os
 
 def enable_cfg_file(name):
-    #cfgName = name + ".cfg"
-    #filePath =
-    f = open("nagios.cfg")
+    cfgName = name + ".cfg\n"
+    filePath = "cfg_file=/usr/local/nagios/etc/objects/" + cfgName
+    os.chdir('/usr/local/nagios/etc')
+    f1= open('nagios.cfg', 'r')
+    f2 = open('temp.cfg', 'w')
+    for line in f1:
+        f2.write(line.replace('#'+filePath, filePath))
+    f1.close()
+    f2.close()
+    os.remove('nagios.cfg')
+    os.rename('temp.cfg','nagios.cfg')
+    ###TODO: write object class that will gen config files for nagios
 
 
 
 
 def create_switch_config():
     enable_cfg_file("switch")
+    os.system('clear')
+    ####TODO: add code for service definitions and host definitions
+    ####TODO: pass group of code to config-gen function
 
 def make_install(word):
     os.system('sudo make install' + word)
