@@ -1,4 +1,5 @@
 import os
+from configGenerator import *
 
 def enable_cfg_file(name):
     cfgName = name + ".cfg\n"
@@ -18,8 +19,37 @@ def enable_cfg_file(name):
 
 
 def create_switch_config():
-    enable_cfg_file("switch")
-    os.system('clear')
+    count = 0
+    switch_names = []
+    ips=[]
+    host_names=[]
+    services = [[]]
+    #enable_cfg_file("switch")
+    while True:
+        os.system('clear')
+        print("We will now allow you to input all your switches info before we design the config file for you!\n\n")
+        switch_names.append(input("Please input the name of your switch; if you are done type in 'Q':"))
+        if switch_names[count].upper() == 'Q':
+            os.system('clear')
+            print("\n")
+            break
+        else:
+            os.system('clear')
+            ips.append(input("Please input the ip of the switch:\n"))
+            host_names.append(input("Please input the host name of the switch"))
+            count += 1
+            os.system('clear')
+    for i in range(len(ips)):
+        count = 0
+        while True:
+            services[i].append(input("Please specify what services you'd like to use. Press Q when done: "))
+            if services[i][count].upper() == 'Q':
+                break
+            else:
+                count += 1
+                os.system('clear')
+    ###TODO: add code to check for q, and then loop through double list
+    switch(switch_names, ips, host_names)
     ####TODO: add code for service definitions and host definitions
     ####TODO: pass group of code to config-gen function
 
