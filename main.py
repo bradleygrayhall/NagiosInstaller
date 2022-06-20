@@ -41,9 +41,12 @@ def create_switch_config():
             os.system('clear')
     for i in range(len(ips)):
         count = 0
+        temp = []
         while True:
-            services[i].append(input("Please specify what services you'd like to use. Press Q when done: "))
-            if services[i][count].upper() == 'Q':
+            temp.append(input("Please specify what services you'd like to use. Press Q when done: "))
+            if temp[count].upper() == 'Q':
+                del temp[count]
+                services.append(temp)
                 break
             else:
                 count += 1
