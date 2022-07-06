@@ -1,18 +1,20 @@
 import os
 from configGenerator import *
+from typing import Final
+NAGIOS_PATH: Final = 'nagios.cfg'
 
 def enable_cfg_file(name):
     cfgName = name + ".cfg\n"
     filePath = "cfg_file=/usr/local/nagios/etc/objects/" + cfgName
     os.chdir('/usr/local/nagios/etc')
-    f1= open('nagios.cfg', 'r')
+    f1= open(NAGIOS_PATH, 'r')
     f2 = open('temp.cfg', 'w')
     for line in f1:
         f2.write(line.replace('#'+filePath, filePath))
     f1.close()
     f2.close()
-    os.remove('nagios.cfg')
-    os.rename('temp.cfg','nagios.cfg')
+    os.remove(NAGIOS_PATH)
+    os.rename('temp.cfg',NAGIOS_PATH)
     ###TODO: write object class that will gen config files for nagios
 
 

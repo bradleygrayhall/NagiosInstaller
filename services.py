@@ -7,6 +7,9 @@ def check(service):
     elif service.upper() == "SNMP":
         temp += "Uptime and link status\n\t"
         temp += "check_command\t\tcheck_snmp!-C public -o sysUpTime.0\n"
-        for i in range(0, 24)
-        temp += "check_command\t\tcheck_snmp!-C public -o ifOper.{i}"
-    elif service.upper() == ""
+        temp += "\tcheck_command\t\tcheck_snmp!-C public -o "
+        for i in range(1, 25):
+            temp += "ifOperStatus.{} -r 1 -m RFC1213-MIB, -o ".format(i)
+    else:
+        return ""
+    return temp
