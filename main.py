@@ -55,6 +55,7 @@ def create_switch_config():
                 os.system('clear')
     ###TODO: add code to check for q, and then loop through double list
     switch(switch_names, ips, host_names)
+    service(services,host_names)
     ####TODO: add code for service definitions and host definitions
     ####TODO: pass group of code to config-gen function
 
